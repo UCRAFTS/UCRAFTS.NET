@@ -1,0 +1,31 @@
+<header>
+    <nav id="nav" class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <a href="/">
+                        <img class="logo" src="/build/img/logo.svg" alt="logo">
+                    </a>
+                </div>
+                <div class="nav-collapse">
+                    <span></span>
+                </div>
+            </div>
+            <ul class="main-nav nav navbar-nav navbar-right">
+                {{ widget('nav_menu') }}
+            </ul>
+        </div>
+    </nav>
+    <div class="header-wrapper sm-padding">
+        <div class="bg-img" style="background-image: url('https://assets.rockpapershotgun.com/images/2020/06/Sonic-Ethers-Unbelievable-Shaders.jpg');">
+            <div class="overlay"></div>
+        </div>
+        <div class="container nav-detail-top">
+            <h2 class="white-text">{{ pageTitle }}</h2>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item active">{{ pageTitle }}</li>
+            </ul>
+        </div>
+    </div>
+</header>
