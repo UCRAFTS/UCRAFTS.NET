@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class NavMenuWidget
- * @package App\Widgets\PublicPart\BigMap
+ * @package App\Widgets\PublicPart\NavMenu
  */
 class NavMenuWidget implements WidgetsInterface
 {
@@ -21,14 +21,15 @@ class NavMenuWidget implements WidgetsInterface
     /**
      * @var Environment
      */
-    private $twig;
+    private Environment $twig;
 
 
     /**
      * NavMenuWidget constructor.
      * @param Environment $twig
      */
-    public function __construct(Environment $twig) {
+    public function __construct(Environment $twig)
+    {
         $this->twig = $twig;
     }
 

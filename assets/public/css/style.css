@@ -130,8 +130,8 @@ ul, ol {
 }
 
 .sm-padding {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 
@@ -168,7 +168,7 @@ ul, ol {
     top: 0;
     right: 0;
     bottom: 0;
-    opacity: .8;
+    opacity: .5;
     background: #1C1D21;
 }
 
@@ -267,8 +267,6 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 .navbar-brand .logo, .navbar-brand .logo-alt {
     max-height: 50px;
     display: block;
-    margin-top: 8px;
-    opacity: 0.85;
 }
 
 #nav:not(.nav-transparent):not(.fixed-nav) .navbar-brand .logo-alt {
@@ -303,6 +301,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     -webkit-transition: 0.2s padding;
     transition: 0.2s padding;
     z-index: 999;
+    text-shadow: none;
 }
 
 #nav.navbar-homepage {
@@ -593,7 +592,8 @@ header {
 }
 
 #home {
-    height: 100vh;
+    height: 77vh;
+    text-shadow: 1px 2px 0 #00000042;
 }
 
 #home .home-wrapper {
@@ -616,7 +616,7 @@ header {
 
 .header-wrapper h2 {
     display: inline-block;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .header-wrapper .breadcrumb {
@@ -1493,7 +1493,6 @@ header {
   line-height: 50px;
   text-align: center;
   border-radius: 3px;
-  background-color: #6195FF;
   color:#FFF;
 }
 
