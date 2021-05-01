@@ -2,32 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Widgets;
+namespace App\Service\Widgets;
 
 use InvalidArgumentException;
 use IteratorAggregate;
 use RuntimeException;
-use Traversable;
 
 /**
  * Class WidgetsCollection
- * @package App\Services\Widgets
+ * @package App\Service\Widget
  */
 class WidgetsCollection implements IteratorAggregate
 {
 
-
     /**
      * @var iterable
      */
-    private $widgets;
-
+    private iterable $widgets;
 
     /**
      * WidgetsCollection constructor.
      * @param iterable $widgets
      */
-    public function __construct($widgets)
+    public function __construct(iterable $widgets)
     {
         $widgetsByAlias = [];
 
@@ -45,15 +42,13 @@ class WidgetsCollection implements IteratorAggregate
         $this->widgets = $widgetsByAlias;
     }
 
-
     /**
-     * @return array|iterable|Traversable
+     * @return iterable
      */
     public function getIterator()
     {
         return $this->widgets;
     }
-
 
     /**
      * @param $alias

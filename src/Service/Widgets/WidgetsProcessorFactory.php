@@ -2,28 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Widgets;
+namespace App\Service\Widgets;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class WidgetProcessorFactory
- * @package App\Services\Widgets
+ * @package App\Service\Widget
  */
 class WidgetsProcessorFactory
 {
 
-
     /**
      * @var WidgetsCollection
      */
-    private $widgets;
+    private WidgetsCollection $widgets;
 
     /**
      * @var RequestStack
      */
-    private $requestStack;
-
+    private RequestStack $requestStack;
 
     /**
      * WidgetProcessorFactory constructor.
@@ -35,7 +33,6 @@ class WidgetsProcessorFactory
         $this->widgets = $widgets;
         $this->requestStack = $requestStack;
     }
-
 
     /**
      * @param string $alias

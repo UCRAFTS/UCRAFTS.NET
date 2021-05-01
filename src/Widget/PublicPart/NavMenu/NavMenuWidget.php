@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Widgets\PublicPart\NavMenu;
+namespace App\Widget\PublicPart\NavMenu;
 
-use App\Services\Widgets\WidgetsInterface;
+use App\Service\Widgets\WidgetsInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -12,17 +12,15 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class NavMenuWidget
- * @package App\Widgets\PublicPart\NavMenu
+ * @package App\Widget\PublicPart\NavMenu
  */
 class NavMenuWidget implements WidgetsInterface
 {
-
 
     /**
      * @var Environment
      */
     private Environment $twig;
-
 
     /**
      * NavMenuWidget constructor.
@@ -33,7 +31,6 @@ class NavMenuWidget implements WidgetsInterface
         $this->twig = $twig;
     }
 
-
     /**
      * @param array $options
      * @return array
@@ -42,7 +39,6 @@ class NavMenuWidget implements WidgetsInterface
     {
         return [];
     }
-
 
     /**
      * @param null $data
@@ -55,7 +51,6 @@ class NavMenuWidget implements WidgetsInterface
     {
         return $this->twig->render('public/widgets/nav_menu/nav_menu.html.twig');
     }
-
 
     /**
      * @return string

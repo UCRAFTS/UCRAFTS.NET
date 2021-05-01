@@ -2,24 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Widgets;
+namespace App\Service\Widgets;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
  * Class WidgetTwigExtension
- * @package App\Services\Widgets
+ * @package App\Service\Widget
  */
 class WidgetsTwigExtension extends AbstractExtension
 {
 
-
     /**
      * @var WidgetsProcessorFactory
      */
-    private $factory;
-
+    private WidgetsProcessorFactory $factory;
 
     /**
      * WidgetTwigExtension constructor.
@@ -29,7 +27,6 @@ class WidgetsTwigExtension extends AbstractExtension
     {
         $this->factory = $factory;
     }
-
 
     /**
      * @return TwigFunction[]
@@ -46,7 +43,6 @@ class WidgetsTwigExtension extends AbstractExtension
             ]),
         ];
     }
-
 
     /**
      * @param $alias

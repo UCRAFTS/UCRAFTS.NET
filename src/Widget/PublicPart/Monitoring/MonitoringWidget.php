@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Widgets\PublicPart\Monitoring;
+namespace App\Widget\PublicPart\Monitoring;
 
-use App\Services\Widgets\WidgetsInterface;
+use App\Service\Widgets\WidgetsInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use MCServerStatus\MCPing;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
@@ -18,11 +18,10 @@ use Doctrine\DBAL\Driver\Exception as DriverException;
 
 /**
  * Class MonitoringWidget
- * @package App\Widgets\PublicPart\Monitoring
+ * @package App\Widget\PublicPart\Monitoring
  */
 class MonitoringWidget implements WidgetsInterface
 {
-
 
     /**
      * @var Environment
@@ -57,7 +56,6 @@ class MonitoringWidget implements WidgetsInterface
         $this->entityManager = $entityManager;
     }
 
-
     /**
      * @param array $options
      * @return array
@@ -73,7 +71,6 @@ class MonitoringWidget implements WidgetsInterface
         ];
     }
 
-
     /**
      * @return int
      * @throws ParameterNotFoundException
@@ -82,7 +79,6 @@ class MonitoringWidget implements WidgetsInterface
     {
         return MCPing::check($this->parameterBug->get('proxyServer'))->players ?? 0;
     }
-
 
     /**
      * @return int
@@ -99,7 +95,6 @@ class MonitoringWidget implements WidgetsInterface
         return abs($stmt->fetchOne());
     }
 
-
     /**
      * @param null $data
      * @return string
@@ -111,7 +106,6 @@ class MonitoringWidget implements WidgetsInterface
     {
         return $this->twig->render('public/widgets/monitoring/monitoring.html.twig', $data);
     }
-
 
     /**
      * @return string

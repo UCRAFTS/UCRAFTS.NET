@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Widgets;
+namespace App\Service\Widgets;
 
 /**
  * Interface WidgetInterface
- * @package App\Services\Widgets
+ * @package App\Service\Widget
  */
 interface WidgetsInterface
 {
-
 
     /**
      * @param array $options
@@ -18,13 +17,11 @@ interface WidgetsInterface
      */
     public function process($options = []): array;
 
-
     /**
      * @param null $data
      * @return string
      */
     public function render($data = null): string;
-
 
     /**
      * @return string

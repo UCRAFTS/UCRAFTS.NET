@@ -2,29 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Widgets;
-
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Contracts\Cache\TagAwareCacheInterface;
+namespace App\Service\Widgets;
 
 /**
  * Class WidgetsProcessor
- * @package App\Services\Widgets
+ * @package App\Service\Widget
  */
 class WidgetsProcessor
 {
 
-
     /**
      * @var WidgetsInterface
      */
-    private $widget;
+    private WidgetsInterface $widget;
 
     /**
      * @var array
      */
-    private $options;
-
+    private array $options;
 
     /**
      * WidgetsProcessor constructor.
@@ -37,7 +32,6 @@ class WidgetsProcessor
         $this->options = $options;
     }
 
-
     /**
      * @return string
      */
@@ -45,7 +39,6 @@ class WidgetsProcessor
     {
         return $this->getWidgetHtml();
     }
-
 
     /**
      * @return string
