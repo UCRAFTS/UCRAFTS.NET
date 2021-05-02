@@ -17,6 +17,7 @@
         </div>
     </nav>
     <div class="header-wrapper sm-padding">
+        {% if pageTitle is defined %}
         <div class="bg-img" style="background-image: url('https://assets.rockpapershotgun.com/images/2020/06/Sonic-Ethers-Unbelievable-Shaders.jpg');">
             <div class="overlay"></div>
         </div>
@@ -27,5 +28,9 @@
                 <li class="breadcrumb-item active">{{ pageTitle }}</li>
             </ul>
         </div>
+        {% else %}
+            <div class="bg-img">
+            </div>
+        {% endif %}
     </div>
 </header>

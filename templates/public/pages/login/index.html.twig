@@ -1,37 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <title>YOUCRAFTS.RU - Твой сервер Minecraft</title>
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputLogin">Login</label>
-        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('public') }}
+    {% endblock %}
+</head>
+<body>
+{% include 'public/components/header.detail.html.twig' %}
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
-
-        {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+<div id="blog" class="section">
+    <div class="container">
+        <div class="row">
+            <main id="main" class="col-md-6">
+                <div class="blog">
+                    <div class="blog-content">
+                        <form method="post">
+                            <h2>Авторизация</h2>
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="loginInput">Логин</label>
+                                <input type="text" name="login" class="form-control" id="loginInput" placeholder="Укажите внутриигровой логин" value="{{ last_username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordInput">Пароль</label>
+                                <input type="password" class="form-control" id="passwordInput" name="password" placeholder="******">
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
-        #}
+    </div>
+</div>
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+{% include 'public/components/footer.html.twig' %}
+
+<div id="back-to-top"></div>
+<div id="preloader">
+    <div class="preloader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('public') }}
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+{% endblock %}
+</body>
+</html>
