@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Service\Widgets;
 
-use ArrayIterator;
 use InvalidArgumentException;
 use IteratorAggregate;
 use RuntimeException;
+use Traversable;
 
 /**
  * Class WidgetsCollection
@@ -17,15 +17,15 @@ class WidgetsCollection implements IteratorAggregate
 {
 
     /**
-     * @var iterable
+     * @var Traversable
      */
-    private iterable $widgets;
+    private Traversable $widgets;
 
     /**
      * WidgetsCollection constructor.
-     * @param iterable $widgets
+     * @param Traversable $widgets
      */
-    public function __construct(iterable $widgets)
+    public function __construct(Traversable $widgets)
     {
         $widgetsByAlias = [];
 
@@ -40,27 +40,30 @@ class WidgetsCollection implements IteratorAggregate
             $widgetsByAlias[$alias] = $widget;
         }
 
-        $this->widgets = $widgetsByAlias;
+        $this->widgets = $widgets;
     }
 
     /**
      * @return iterable
      */
-    public function getIterator()
+    public function getIterator(): iterable
     {
-        return new ArrayIterator($this->widgets);
+        return $this->widgets;
     }
 
     /**
      * @param $alias
      * @return mixed
      */
-    public function getByAlias($alias)
+    public function getByAlias($alias): WidgetsInterface
     {
-        if ( ! isset($this->widgets[$alias])) {
-            throw new InvalidArgumentException('Widget with alias ' . $alias . ' not found');
+        /** @var WidgetsInterface $widget */
+        foreach ($this->getIterator() as $widget) {
+            if ($widget->getAlias() === $alias) {
+                return $widget;
+            }
         }
 
-        return $this->widgets[$alias];
+        throw new InvalidArgumentException('Widget with alias ' . $alias . ' not found');
     }
 }

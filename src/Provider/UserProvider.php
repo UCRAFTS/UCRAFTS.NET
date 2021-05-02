@@ -70,6 +70,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         $user->setLogin($result['realname']);
         $user->setPassword($result['password']);
         $user->setUuid($result['uuid']);
+        $user->setRoles(array_merge($user->getRoles(), $this->getRoles($user)));
 
         return $user;
     }
@@ -100,7 +101,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 
         $connection = $this->entityManager->getConnection();
         $stmt = $connection->prepare($query);
-        $stmt->bindValue(1, mb_strtolower($user->getUuid()));
+        $stmt->bindValue(1, $user->getUuid());
         $stmt->execute();
 
         $result = $stmt->fetchAssociative();
@@ -111,8 +112,39 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 
         $user->setPassword($result['password']);
         $user->setLogin($result['realname']);
+        $user->setRoles(array_merge($user->getRoles(), $this->getRoles($user)));
 
         return $user;
+    }
+
+    /**
+     * @param User $user
+     * @return array
+     * @throws DDDException
+     * @throws DDException
+     */
+    private function getRoles(User $user): array
+    {
+        $query = '
+            select permission from luckperms_user_permissions where uuid = ? and permission like \'group.%\'
+        ';
+        $connection = $this->entityManager->getConnection();
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(1, $user->getUuid());
+        $stmt->execute();
+
+        $result = $stmt->fetchFirstColumn();
+
+        if (!$result || empty($result)) {
+            return [];
+        }
+
+        $result = array_unique(array_values($result));
+        $result = array_map(function($item) {
+            return mb_strtoupper(str_replace('group.', '', $item));
+        }, $result);
+
+        return $result;
     }
 
     /**

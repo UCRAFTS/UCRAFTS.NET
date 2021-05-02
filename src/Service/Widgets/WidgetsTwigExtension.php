@@ -45,14 +45,12 @@ class WidgetsTwigExtension extends AbstractExtension
     }
 
     /**
-     * @param $alias
+     * @param string $alias
      * @param array $options
      * @return string
      */
-    public function renderWidget($alias, $options = []): string
+    public function renderWidget(string $alias, array $options = []): string
     {
-        $widgetProcessor = $this->factory->create($alias, $options);
-
-        return $widgetProcessor->process();
+        return $this->factory->create($alias, $options)->process();
     }
 }

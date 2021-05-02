@@ -15,13 +15,13 @@ interface WidgetsInterface
      * @param array $options
      * @return array
      */
-    public function process($options = []): array;
+    public function process(array $options = []): array;
 
     /**
-     * @param null $data
+     * @param array $data
      * @return string
      */
-    public function render($data = null): string;
+    public function render(array $data = []): string;
 
     /**
      * @return string

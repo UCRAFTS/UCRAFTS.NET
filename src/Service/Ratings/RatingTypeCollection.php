@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service\Ratings;
 
-use ArrayIterator;
 use IteratorAggregate;
 use RuntimeException;
+use Traversable;
 
 /**
  * Class RatingTypeCollection
@@ -16,15 +16,15 @@ class RatingTypeCollection implements IteratorAggregate
 {
 
     /**
-     * @var array|iterable
+     * @var Traversable
      */
-    public iterable $ratings;
+    private Traversable $ratings;
 
     /**
      * RatingTypeInterface constructor.
-     * @param iterable $ratings
+     * @param Traversable $ratings
      */
-    public function __construct(iterable $ratings)
+    public function __construct(Traversable $ratings)
     {
         $ratingTypes = [];
 
@@ -45,7 +45,7 @@ class RatingTypeCollection implements IteratorAggregate
     /**
      * @return iterable
      */
-    public function getIterator()
+    public function getIterator(): iterable
     {
         return $this->ratings;
     }

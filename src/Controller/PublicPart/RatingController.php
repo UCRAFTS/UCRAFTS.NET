@@ -32,6 +32,7 @@ class RatingController extends AbstractController
     {
         /** @var RatingTypeInterface $rating */
         foreach ($ratings->getIterator() as $rating) {
+
             if ($rating->isSupport($type)) {
                 return $rating->render($request);
             }
