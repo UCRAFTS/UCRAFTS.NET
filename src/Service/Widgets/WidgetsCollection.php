@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Widgets;
 
+use ArrayIterator;
 use InvalidArgumentException;
 use IteratorAggregate;
 use RuntimeException;
@@ -47,7 +48,7 @@ class WidgetsCollection implements IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->widgets;
+        return new ArrayIterator($this->widgets);
     }
 
     /**

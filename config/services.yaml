@@ -21,6 +21,11 @@ services:
     _instanceof:
         App\Service\Widgets\WidgetsInterface:
             tags: ['app.widgets']
+        App\Service\Ratings\RatingTypeInterface:
+            tags: ['app.ratings']
 
     App\Service\Widgets\WidgetsCollection:
         arguments: [!tagged app.widgets]
+
+    App\Service\Ratings\RatingTypeCollection:
+        arguments: [!tagged app.ratings]
