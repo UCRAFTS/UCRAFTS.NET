@@ -25,4 +25,15 @@ class RulesController extends AbstractController
     {
         return [];
     }
+
+    /**
+     * @Route("/p/rules/new", name="pages.rules.new", methods="GET")
+     * @Template("public/pages/rules/v2.twig")
+     *
+     * @return array
+     */
+    public function v2(): array
+    {
+        return [];
+    }
 }
