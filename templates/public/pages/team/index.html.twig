@@ -1,0 +1,18 @@
+{% extends 'public/layout/index.html.twig' %}
+{% block body %}
+    {% include 'public/layout/header.detail.html.twig' with {pageTitle: 'Команда проекта'} %}
+
+    <div id="blog" class="section">
+        <div class="container">
+            <div class="row">
+                <main id="main" class="col-md-12">
+                    <div class="section sm-padding">
+                        <div class="container">
+                            {{ widget('team') }}
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+{% endblock %}

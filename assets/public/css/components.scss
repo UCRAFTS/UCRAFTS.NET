@@ -101,3 +101,20 @@
 .punishment {
   color: #e06d6d !important;
 }
+
+.team-card {
+  position: relative;
+  padding: 20px;
+  margin: 15px 0px;
+  border: 1px solid #EEE;
+
+  img {
+    float: left;
+    margin-right: 15px;
+  }
+
+  p {
+    line-height: 48px;
+    margin-bottom: 0;
+  }
+}

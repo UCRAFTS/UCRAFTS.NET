@@ -1,0 +1,14 @@
+{% for group in list %}
+<div class="row">
+    {% if not loop.first %}<br/>{% endif %}
+    <h3 class="title">{{ group.title }}</h3>
+    {% for user in group.members %}
+    <div class="col-md-4 col-sm-6">
+        <div class="team-card">
+            <img width="48px" src="/build/img/icons/steave_head.png">
+            <p>{{ user.user }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
