@@ -15,19 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class RulesController extends AbstractController
 {
 
-    /**
-     * @Route("/p/rules", name="pages.rules", methods="GET")
-     * @Template("public/pages/rules/index.html.twig")
-     *
-     * @return array
-     */
-    public function index(): array
-    {
-        return [];
-    }
+//    /**
+//     * @Route("/p/rules/v1", name="pages.rules", methods="GET")
+//     * @Template("public/pages/rules/v1.html.twig")
+//     *
+//     * @return array
+//     */
+//    public function v1(): array
+//    {
+//        return [];
+//    }
 
     /**
-     * @Route("/p/rules/new", name="pages.rules.new", methods="GET")
+     * @Route("/p/rules", name="pages.rules.new", methods="GET")
      * @Template("public/pages/rules/v2.twig")
      *
      * @return array

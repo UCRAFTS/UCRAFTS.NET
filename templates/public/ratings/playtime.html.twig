@@ -1,36 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% include 'public/layout/index.html.twig' %}
+{% block body %}
+    {% include 'public/components/header.detail.html.twig' with {pageTitle: 'Рейтинг по времени игры'} %}
 
-    <title>YOUCRAFTS.RU - Твой сервер Minecraft</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
-
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('public') }}
-    {% endblock %}
-</head>
-<body>
-{% include 'public/components/header.detail.html.twig' with {pageTitle: 'Рейтинг по времени игры'} %}
-
-<div id="blog" class="section">
-    <div class="container">
-        <div class="row">
-            <main id="main" class="col-md-12">
-                <div class="blog">
-                    <div class="blog-content">
-                        <table class="table table-bordered table-striped">
-                            <thead>
+    <div id="blog" class="section">
+        <div class="container">
+            <div class="row">
+                <main id="main" class="col-md-12">
+                    <div class="blog">
+                        <div class="blog-content">
+                            <table class="table table-bordered table-striped">
+                                <thead>
                                 <tr align="center">
                                     <td><strong>#</strong></td>
                                     <td><strong>Игрок</strong></td>
                                     <td><strong>Наиграно</strong></td>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 {% if list is not empty %}
                                     {% for player in list %}
                                         <tr>
@@ -55,33 +41,12 @@
                                         <td colspan="3">Список пуст :(</td>
                                     </tr>
                                 {% endif %}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
     </div>
-</div>
-
-{% include 'public/components/footer.html.twig' %}
-
-<div id="back-to-top"></div>
-<div id="preloader">
-    <div class="preloader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
-
-{% block javascripts %}
-    {{ encore_entry_script_tags('public') }}
-
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 {% endblock %}
-</body>
-</html>
