@@ -444,6 +444,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     }
     #nav.nav-transparent {
         background: #FFF;
+        padding: 5px 0;
     }
     .main-nav {
         position: fixed;
@@ -452,7 +453,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
         -webkit-box-shadow: 0px 80px 0px 0px #1C1D21;
         box-shadow: 0px 80px 0px 0px #1C1D21;
         max-width: 250px;
-        width: 0%;
+        width: 0;
         -webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
         transform: translateX(100%);
@@ -461,6 +462,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
         background: #1C1D21;
         -webkit-transition: 0.2s all;
         transition: 0.2s all;
+        z-index: 1;
     }
     #nav.open .main-nav {
         -webkit-transform: translateX(0%);
@@ -626,7 +628,7 @@ header {
 }
 
 .header-wrapper .breadcrumb .breadcrumb-item.active {
-    color: #868F9B;
+    color: #d7d9de;
 }
 
 .breadcrumb>li+li:before {

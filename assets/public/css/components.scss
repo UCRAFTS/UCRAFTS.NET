@@ -1,3 +1,11 @@
+@media only screen and (max-width: 767px) {
+  .ip-btn {
+    div {
+      width: 100%;
+    }
+  }
+}
+
 .ip-btn {
   background: none;
   border: 2px solid white;
