@@ -89,6 +89,7 @@ class TeamWidget implements WidgetsInterface
     {
         $list = [];
         $groups = [];
+        $prevGroupMembers = [];
 
         foreach (self::GROUPS as $group => $title) {
             $groups[] = 'group.' . $group;
@@ -144,6 +145,18 @@ class TeamWidget implements WidgetsInterface
                     'title' => $title,
                     'members' => $members
                 ];
+            }
+        }
+
+        foreach ($list as $g => $group) {
+            foreach ($group['members'] as $m => $member) {
+                foreach ($prevGroupMembers as $prevGroupMember) {
+                    if ($prevGroupMember['uuid'] === $member['uuid']) {
+                        unset($list[$g]['members'][$m]);
+                    }
+                }
+
+                $prevGroupMembers[] = $member;
             }
         }
 
