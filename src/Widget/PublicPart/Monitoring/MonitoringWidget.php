@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use MCServerStatus\MCPing;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Throwable;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -77,7 +78,18 @@ class MonitoringWidget implements WidgetsInterface
      */
     private function getTotalPlayers(): int
     {
-        return MCPing::check($this->parameterBug->get('proxyServer'))->players ?? 0;
+        $totalOnline = 0;
+
+        try {
+            $proxy = explode(',', $this->parameterBug->get('proxyServer'));
+            array_map(function($item) use (&$totalOnline) {
+                $totalOnline += MCPing::check($item)->players ?? 0;
+            }, $proxy);
+
+            return $totalOnline;
+        } catch (Throwable $e) {
+            return $totalOnline;
+        }
     }
 
     /**
