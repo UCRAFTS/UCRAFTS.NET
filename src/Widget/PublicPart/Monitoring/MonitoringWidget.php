@@ -16,6 +16,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Driver\Exception as DriverException;
+use xPaw\MinecraftPing;
 use xPaw\MinecraftQuery;
 
 /**
@@ -84,14 +85,18 @@ class MonitoringWidget implements WidgetsInterface
         try {
             $proxy = explode(',', $this->parameterBug->get('proxyServer'));
             array_map(function($item) use (&$totalOnline) {
-                $query = new MinecraftQuery();
-                $query->Connect($item, 25577);
-                dd($query->GetPlayers());
-//                $totalOnline += $query->GetPlayers() ?? 0;
+                $ping = new MinecraftPing($item, 25565, 2, false);
+                var_dump($ping->Query());
+                $ping->Close();
+//                $query = new MinecraftQuery();
+//                $query->Connect($item, 25577);
+//                dd($query->GetPlayers());
+////                $totalOnline += $query->GetPlayers() ?? 0;
             }, $proxy);
 
             return $totalOnline;
         } catch (Throwable $e) {
+            var_dump($e);
             return $totalOnline;
         }
     }
