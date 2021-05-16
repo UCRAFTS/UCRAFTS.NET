@@ -6,6 +6,8 @@ namespace App\Widget\PublicPart\Monitoring;
 
 use App\Service\Widgets\WidgetsInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use HAProxy\Executor;
+use HAProxy\Stats;
 use MCServerStatus\MCPing;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -80,18 +82,12 @@ class MonitoringWidget implements WidgetsInterface
      */
     private function getTotalPlayers(): int
     {
-        $totalOnline = 0;
+        $totalOnline = 100;
 
         try {
             $proxy = explode(',', $this->parameterBug->get('proxyServer'));
             array_map(function($item) use (&$totalOnline) {
-                $ping = new MinecraftPing($item, 25565, 2);
-                var_dump($ping->QueryOldPre17());
-                $ping->Close();
-//                $query = new MinecraftQuery();
-//                $query->Connect($item, 25577);
-//                dd($query->GetPlayers());
-////                $totalOnline += $query->GetPlayers() ?? 0;
+                ;
             }, $proxy);
 
             return $totalOnline;
