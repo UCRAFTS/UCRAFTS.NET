@@ -86,7 +86,7 @@ class MonitoringWidget implements WidgetsInterface
             $proxy = explode(',', $this->parameterBug->get('proxyServer'));
             array_map(function($item) use (&$totalOnline) {
                 $ping = new MinecraftPing($item, 25565, 2);
-                var_dump($ping->Query());
+                var_dump($ping->QueryOldPre17());
                 $ping->Close();
 //                $query = new MinecraftQuery();
 //                $query->Connect($item, 25577);
