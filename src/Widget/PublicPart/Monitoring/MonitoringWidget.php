@@ -96,7 +96,6 @@ class MonitoringWidget implements WidgetsInterface
 
             return $totalOnline;
         } catch (Throwable $e) {
-            var_dump($e);
             return $totalOnline;
         }
     }
