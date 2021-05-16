@@ -543,5 +543,8 @@
     },
     "webmozart/assert": {
         "version": "1.9.1"
+    },
+    "xpaw/php-minecraft-query": {
+        "version": "4.0.0"
     }
 }
