@@ -6,9 +6,7 @@ namespace App\Widget\PublicPart\Monitoring;
 
 use App\Service\Widgets\WidgetsInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use HAProxy\Executor;
-use HAProxy\Stats;
-use MCServerStatus\MCPing;
+use Predis\Client;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Throwable;
@@ -18,8 +16,6 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Driver\Exception as DriverException;
-use xPaw\MinecraftPing;
-use xPaw\MinecraftQuery;
 
 /**
  * Class MonitoringWidget
@@ -43,22 +39,30 @@ class MonitoringWidget implements WidgetsInterface
      */
     private EntityManagerInterface $entityManager;
 
+    /**
+     * @var Client
+     */
+    private Client $redis;
+
 
     /**
      * MonitoringWidget constructor.
      * @param Environment $twig
      * @param ParameterBagInterface $parameterBag
      * @param EntityManagerInterface $entityManager
+     * @param Client $redis
      */
     public function __construct(
         Environment $twig,
         ParameterBagInterface $parameterBag,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Client $redis
     )
     {
         $this->twig = $twig;
         $this->parameterBug = $parameterBag;
         $this->entityManager = $entityManager;
+        $this->redis = $redis;
     }
 
     /**
@@ -82,13 +86,19 @@ class MonitoringWidget implements WidgetsInterface
      */
     private function getTotalPlayers(): int
     {
-        $totalOnline = 100;
+        $totalOnline = 0;
 
         try {
-            $proxy = explode(',', $this->parameterBug->get('proxyServer'));
-            array_map(function($item) use (&$totalOnline) {
-                ;
-            }, $proxy);
+            $this->redis->select(7);
+            $proxyList = $this->redis->keys('*');
+
+            foreach ($proxyList as $proxy) {
+                $servers = $this->redis->hgetall($proxy);
+
+                foreach (array_values($servers) as $serverOnline) {
+                    $totalOnline += (int) $serverOnline;
+                }
+            }
 
             return $totalOnline;
         } catch (Throwable $e) {

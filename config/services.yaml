@@ -29,3 +29,7 @@ services:
 
     App\Service\Ratings\RatingTypeCollection:
         arguments: [!tagged app.ratings]
+
+    App\Widget\PublicPart\Monitoring\MonitoringWidget:
+        arguments:
+            $redis: '@snc_redis.default'
