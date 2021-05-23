@@ -1,5 +1,6 @@
 parameters:
     proxyServer: '%env(PROXY_SERVER)%'
+    redisOnlineServersIndex: '%env(REDIS_ONLINE_SEVRERS_INDEX)%'
 
 services:
     _defaults:

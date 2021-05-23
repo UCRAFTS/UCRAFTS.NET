@@ -89,7 +89,7 @@ class MonitoringWidget implements WidgetsInterface
         $totalOnline = 0;
 
         try {
-            $this->redis->select(7);
+            $this->redis->select($this->parameterBug->get('redisOnlineServersIndex'));
             $proxyList = $this->redis->keys('*');
 
             foreach ($proxyList as $proxy) {
